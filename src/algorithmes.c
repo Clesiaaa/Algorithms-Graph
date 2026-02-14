@@ -2,6 +2,8 @@
 #include <stdint.h>
 #include <stdio.h>
 
+//algo
+
 void visiter_pp(graphe *g, noeud *u, uint8_t *date)
 {
     (*date)++;

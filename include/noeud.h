@@ -3,6 +3,8 @@
 #ifndef NOEUD_H
 #define NOEUD_H
 
+//noeud
+
 typedef struct noeud {
     uint16_t val;
     uint8_t couleur;

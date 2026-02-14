@@ -2,6 +2,8 @@
 #include "include/noeud.h"
 #include "include/algorithmes.h"
 
+//main
+
 int main()
 {
     graphe G = graphe_fort_con();

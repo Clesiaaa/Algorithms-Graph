@@ -5,6 +5,7 @@
 #include "../include/graphe.h"
 #include "../include/noeud.h"
 
+//graphe
 
 graphe creer_graphe(uint16_t v)
 {

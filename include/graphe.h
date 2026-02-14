@@ -4,6 +4,8 @@
 #ifndef GRAPHE_H
 #define GRAPHE_H
 
+//graphe
+
 typedef struct graphe {
     uint16_t v;
     noeud *noeuds;

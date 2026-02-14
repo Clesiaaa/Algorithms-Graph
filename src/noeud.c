@@ -2,6 +2,8 @@
 #include <stdio.h>
 #include "../include/noeud.h"
 
+//graphe
+
 noeud creer_noeud(uint16_t val)
 {
     noeud n;
