@@ -24,9 +24,10 @@ Implémentation de **graphes orientés** avec algorithmes de parcours en profond
 | `ajouter_arete(g, src, dst)` | ➕ Ajoute une arête |
 | `afficher_graphe(g)` | 👁️ Affiche la liste d'adjacence |
 | `inverser(g)` | 🔄 Inverse toutes les arêtes |
-| `ppd(g)` | 📍 DFS avec dates de fin  |
+| `ppd(g)` | 📍 DFS avec dates de début & fin  |
 | `pp(g)` | 🔍 DFS avec arborescence |
 | `liberer_graphe(g)` | 🗑️ Libère la mémoire |
+| `composantes_fort_connexe(g)` | ⚙️ Détermine les composantes fortement connexe|
 
 ## 💡 Exemple
 ```c

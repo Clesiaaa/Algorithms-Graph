@@ -12,4 +12,6 @@ graphe inverser(graphe *g);
 void pp(graphe *g);
 void visiter_pp(graphe *g, noeud *u);
 
+void composantes_fort_connexe(graphe *g);
+
 #endif

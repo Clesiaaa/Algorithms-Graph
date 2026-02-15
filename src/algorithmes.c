@@ -81,7 +81,7 @@ graphe inverser(graphe *g)
 void visiter_pp(graphe *g, noeud *u)
 {
     u->marquer = 1;
-    printf("%d ", u->val + 1);
+    printf("%d ", u->val);
     
     noeud *noeud_actuel = u->suivant;
     while (noeud_actuel != NULL) {
@@ -109,4 +109,46 @@ void pp(graphe *g)
             composante++;
         }
     }
+}
+
+void composantes_fort_connexe(graphe *g){
+
+    ppd(g);
+
+    noeud *ordre = (noeud *)malloc(g->v * sizeof(noeud));
+
+    for (uint16_t j = 0x00; j < g->v; j++){
+        ordre[j] = g->noeuds[j];
+    }
+
+    for (uint16_t u = 0x00; u < g->v - 1; u++){
+        for (uint16_t v = 0x00; v < g->v - 1; v++){
+
+            if (ordre[v].fin < ordre[v + 1].fin){
+
+                noeud temp = ordre[v];
+                ordre[v] = ordre[v + 1];
+                ordre[v + 1] = temp;
+            }
+        }
+    }
+
+    graphe inv_g = inverser(g);
+
+    uint8_t composante = 1;
+
+    printf("\n==== Composantes Fortement Connexe ====\n");
+
+    for (uint16_t i = 0x00; i < g->v; i++) {
+        uint16_t noeud_id = ordre[i].val;
+        
+        if (inv_g.noeuds[noeud_id].marquer == 0) {
+            printf("Composante %d : ", composante);
+            visiter_pp(&inv_g, &inv_g.noeuds[noeud_id]);
+            printf("\n");
+            composante++;
+        }
+    }
+    free(ordre);
+    liberer_graphe(&inv_g);
 }
