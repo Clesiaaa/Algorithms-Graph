@@ -45,6 +45,7 @@ void ajouter_noeud(graphe *g, noeud *n, uint16_t s)
 
 void afficher_graphe(graphe *g)
 {
+    printf("\n ==================\n");
     for (uint16_t i = 0; i < g->v; i++)
     {
         printf("%d : [", i);
@@ -71,30 +72,31 @@ graphe graphe_fort_con(void)
 {
     graphe g = creer_graphe(10);
 
-    ajouter_arete(&g, 0, 2);
+    ajouter_arete(&g, 0, 1);
 
-    ajouter_arete(&g, 1, 3);
-    ajouter_arete(&g, 1, 7);
-    ajouter_arete(&g, 1, 1);
+    ajouter_arete(&g, 1, 2);
+    ajouter_arete(&g, 1, 6);
+    ajouter_arete(&g, 1, 0);
 
-    ajouter_arete(&g, 2, 4);
+    ajouter_arete(&g, 2, 3);
 
-    ajouter_arete(&g, 3, 5);
-    ajouter_arete(&g, 3, 8);
+    ajouter_arete(&g, 3, 4);
+    ajouter_arete(&g, 3, 7);
 
-    ajouter_arete(&g, 4, 4);
+    ajouter_arete(&g, 4, 3);
 
-    ajouter_arete(&g, 5, 7);
-    ajouter_arete(&g, 5, 1);
+    ajouter_arete(&g, 5, 6);
+    ajouter_arete(&g, 5, 0);
     ajouter_arete(&g, 5, 9);
 
-    ajouter_arete(&g, 6, 6);
+    ajouter_arete(&g, 6, 5);
 
-    ajouter_arete(&g, 7, 9);
+    ajouter_arete(&g, 7, 8);
 
-    ajouter_arete(&g, 8, 8);
+    ajouter_arete(&g, 8, 7);
+    ajouter_arete(&g, 8, 4);
 
-    ajouter_arete(&g, 9, 8);
+    ajouter_arete(&g, 9, 7);
 
     return g;
 }

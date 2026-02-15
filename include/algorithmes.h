@@ -5,6 +5,11 @@
 
 //algo
 
+void ppd(graphe *g);
+void visiter_ppd(graphe *g, noeud *u, uint8_t *date);
+graphe inverser(graphe *g);
+
 void pp(graphe *g);
-void visiter_pp(graphe *g, noeud *u, uint8_t *date);
+void visiter_pp(graphe *g, noeud *u);
+
 #endif

@@ -10,8 +10,14 @@ int main()
 
     afficher_graphe(&G);
 
-    pp(&G);
+    graphe inv_G = inverser(&G);
+
+    afficher_graphe(&inv_G);
+
+    ppd(&G);
+    pp(&inv_G);
 
     liberer_graphe(&G);
+    liberer_graphe(&inv_G);
     return 0;
 }

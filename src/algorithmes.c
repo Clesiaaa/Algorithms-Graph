@@ -4,7 +4,7 @@
 
 //algo
 
-void visiter_pp(graphe *g, noeud *u, uint8_t *date)
+void visiter_ppd(graphe *g, noeud *u, uint8_t *date)
 {
     (*date)++;
     u->debut = *date;
@@ -14,7 +14,7 @@ void visiter_pp(graphe *g, noeud *u, uint8_t *date)
         noeud *noeud_suivant = &g->noeuds[noeud_actuel->val];
 
         if (noeud_suivant->couleur == 0) {
-            visiter_pp(g, noeud_suivant, date);
+            visiter_ppd(g, noeud_suivant, date);
         }
 
         noeud_actuel = noeud_actuel->suivant;
@@ -25,7 +25,7 @@ void visiter_pp(graphe *g, noeud *u, uint8_t *date)
     u->fin = *date;
 }
 
-void pp(graphe *g)
+void ppd(graphe *g)
 {
     uint8_t date = 0x00;
 
@@ -33,14 +33,80 @@ void pp(graphe *g)
         noeud *noeud_actuel = &g->noeuds[nd];
 
         if (noeud_actuel->couleur == 0) {
-            visiter_pp(g, noeud_actuel, &date);
+            visiter_ppd(g, noeud_actuel, &date);
         }
     }
 
-    printf("\nparcours en profondeur\n");
+    printf("\nparcours en profondeur date\n");
     printf("noeud | début | fin\n");
     for (uint16_t k = 0x00; k < g->v; k++) {
         noeud *noeud_actuel = &g->noeuds[k];
         printf("  %2d | %5d | %3d\n", noeud_actuel->val, noeud_actuel->debut, noeud_actuel->fin);
+    }
+}
+
+graphe inverser(graphe *g)
+{
+    graphe inv_g = creer_graphe(g->v);
+
+    for (uint16_t i = 0x00; i < g->v; i++){
+
+        uint8_t est_present = 0;
+        noeud *noeud_est_present = &g->noeuds[i];
+        noeud *noeud_actuel = &g->noeuds[i];
+
+        while (noeud_est_present != NULL){
+            if (noeud_est_present->val == i){
+                est_present = 1;
+                break;
+            }
+            noeud_est_present = noeud_est_present->suivant;
+        }
+
+        if (est_present == 1){
+            while(noeud_actuel != NULL){
+                if (noeud_actuel->val != i){
+                    ajouter_arete(&inv_g, noeud_actuel->val, i);
+                    noeud_actuel = noeud_actuel->suivant;
+                } else {
+                    noeud_actuel = noeud_actuel->suivant;
+                }
+            }
+
+        }
+    }
+    return inv_g;
+}
+
+void visiter_pp(graphe *g, noeud *u)
+{
+    u->marquer = 1;
+    printf("%d ", u->val + 1);
+    
+    noeud *noeud_actuel = u->suivant;
+    while (noeud_actuel != NULL) {
+        
+        noeud *suivant_reel = &g->noeuds[noeud_actuel->val];
+        
+        if (suivant_reel->marquer == 0) {
+            visiter_pp(g, suivant_reel);
+        }
+        
+        noeud_actuel = noeud_actuel->suivant;
+    }
+}
+
+void pp(graphe *g)
+{    
+    uint8_t composante = 1;
+    for (uint16_t i = 0x00; i < g->v; i++) {
+        noeud *noeud_actuel = &g->noeuds[i];
+        
+        if (noeud_actuel->marquer == 0) {
+            printf("Arborescence %d : ", composante);
+            visiter_pp(g, noeud_actuel);
+            printf("\n");
+            composante++;
+        }
     }
 }
