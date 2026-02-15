@@ -152,3 +152,50 @@ void composantes_fort_connexe(graphe *g){
     free(ordre);
     liberer_graphe(&inv_g);
 }
+
+void pl(graphe *g)
+{
+    printf("=== Parcours en Largeur (BFS) ===\n\n");
+    
+    uint16_t *queue = (uint16_t *)malloc(g->v * sizeof(uint16_t));
+    uint16_t debut = 0; 
+    uint16_t fin = 0;   
+    
+    for (uint16_t k = 0; k < g->v; k++) {
+        noeud *noeud_actuel = &g->noeuds[k];
+        
+        if (noeud_actuel->marquer == 0) {
+            printf("Composante %d : ", k + 1);
+            
+            queue[fin] = k;
+            fin++;
+            noeud_actuel->marquer = 1;
+            
+            while (debut < fin) {
+                uint16_t noeud_id = queue[debut];
+                debut++;
+                
+                noeud *noeud_traiter = &g->noeuds[noeud_id];
+                printf("%d ", noeud_traiter->val + 1);
+                
+                noeud *noeud_successeur = noeud_traiter->suivant;
+                while (noeud_successeur != NULL) {
+                    uint16_t succ_id = noeud_successeur->val;
+                    noeud *succ = &g->noeuds[succ_id];
+                    
+                    if (succ->marquer == 0) {
+                        succ->marquer = 1;
+                        queue[fin] = succ_id;
+                        fin++;
+                    }
+                    
+                    noeud_successeur = noeud_successeur->suivant;
+                }
+            }
+            
+            printf("\n");
+        }
+    }
+    
+    free(queue);
+}

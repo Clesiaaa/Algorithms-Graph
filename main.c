@@ -9,9 +9,10 @@ int main()
     graphe G = graphe_fort_con();
 
     afficher_graphe(&G);
-
+    
     composantes_fort_connexe(&G);
-
+    
     liberer_graphe(&G);
+
     return 0;
 }

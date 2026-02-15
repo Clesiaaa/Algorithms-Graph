@@ -14,4 +14,6 @@ void visiter_pp(graphe *g, noeud *u);
 
 void composantes_fort_connexe(graphe *g);
 
+void pl(graphe *);
+
 #endif
