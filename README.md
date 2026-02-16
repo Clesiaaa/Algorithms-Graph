@@ -5,7 +5,7 @@ Implémentation de **graphes orientés** avec algorithmes de parcours en profond
 
 ## 🚀 Compilation
 ```bash
-./compile.sh
+make
 ./out
 ```
 
