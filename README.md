@@ -1,90 +1,79 @@
-# 📊 LibGraphes en C
+# LibGraphes
 
-## 🎯 Description
-Implémentation de **graphes orientés** avec algorithmes de parcours en profondeur et détection de composantes fortement connexes.
+Bibliothèque C pour manipuler des graphes orientés avec algorithmes avancés.
 
-## 🚀 Compilation
+## Installation
+
 ```bash
-make
-./out
+make && ./out
 ```
 
-## 📂 Structure
-```
-├── graphe.h/c       📈 Gestion des graphes
-├── noeud.h/c        🔵 Gestion des nœuds
-├── algorithmes.h/c  🔍 Algorithmes (DFS, inversion)
-└── main.c           ⚙️ Programme principal
-```
+## API
 
-## 🛠️ Fonctions principales
 | Fonction | Description |
 |----------|-------------|
-| `creer_graphe(v)` | 🆕 Crée un graphe avec v nœuds |
-| `ajouter_arete(g, src, dst)` | ➕ Ajoute une arête |
-| `afficher_graphe(g)` | 👁️ Affiche la liste d'adjacence |
-| `inverser(g)` | 🔄 Inverse toutes les arêtes |
-| `ppd(g)` | 📍 DFS avec dates de début & fin  |
-| `pp(g)` | 🔍 DFS avec arborescence |
-| `liberer_graphe(g)` | 🗑️ Libère la mémoire |
-| `composantes_fort_connexe(g)` | ⚙️ Détermine les composantes fortement connexe|
-| `pl(g)` | 🔄 BFS avec suite de sommets|
+| `creer_graphe(v)` | Crée un graphe avec v nœuds |
+| `ajouter_arete(g, src, dst)` | Ajoute une arête |
+| `afficher_graphe(g)` | Affiche la liste d'adjacence |
+| `inverser(g)` | Inverse toutes les arêtes |
+| `ppd(g)` | DFS avec dates de visite |
+| `pp(g)` | DFS avec affichage arborescence |
+| `pl(g)` | BFS (parcours largeur) |
+| `composantes_fort_connexe(g)` | Détecte composantes fortement connexes |
+| `liberer_graphe(g)` | Libère la mémoire |
 
-## 💡 Exemple
+## Exemple
+
 ```c
 graphe G = creer_graphe(5);
 ajouter_arete(&G, 0, 1);
 ajouter_arete(&G, 1, 2);
-afficher_graphe(&G);      // Affiche structure
+afficher_graphe(&G);
+composantes_fort_connexe(&G);
 liberer_graphe(&G);
 ```
 
-## 📊 Structures de données
+## Structure
+
 ```c
 typedef struct noeud {
-    uint16_t val;           // ID du nœud
-    struct noeud *suivant;  // Pointeur vers prochain successeur
+    uint16_t val;           // ID
+    struct noeud *suivant;  // Successeur
     uint8_t couleur;        // 0=blanc, 1=gris, 2=noir
-    uint8_t marquer;        // 0=non visité, 1=visité
-    uint8_t debut;          // Date début visite
-    uint8_t fin;            // Date fin visite
+    uint8_t marquer;        // Marquage visité
+    uint8_t debut;          // Date début (DFS)
+    uint8_t fin;            // Date fin (DFS)
 } noeud;
 
 typedef struct {
-    uint16_t v;             // Nombre de nœuds
-    noeud *noeuds;          // Tableau de nœuds
+    uint16_t v;             // Nb nœuds
+    noeud *noeuds;          // Tableau nœuds
 } graphe;
 ```
 
-## ⚡ Algorithmes
-- **DFS** 🔍: O(V + E) - Parcours en profondeur
-- **Inversion** 🔄: O(V + E) - Inverse toutes les arêtes
-- **Kosaraju** 🏆: O(V + E) - Composantes fortement connexes
+## Complexité
 
-## ⚠️ Points clés
-- ✅ Toujours libérer avec `liberer_graphe()`
-- ✅ Vérifier que les nœuds existent avant d'ajouter une arête
-- ✅ Utiliser `uint16_t` pour les dates (pas `uint8_t`)
-- ✅ Récupérer le vrai nœud via `&g->noeuds[id]`
+| Algorithme | Temps |
+|-----------|-------|
+| DFS/BFS | O(V+E) |
+| Inversion | O(V+E) |
+| Kosaraju | O(V+E) |
 
-## 🐛 Débogage courant
-| Erreur | Cause | Solution |
-|--------|-------|----------|
-| 💥 SEGFAULT | Nœud inexistant | Vérifier `creer_graphe(n)` |
-| 📉 Dates bizarres | `uint8_t` déborde | Utiliser `uint16_t` |
-| 🔗 Mauvaises arêtes | Accès liste chaînée mal | Utiliser `&g->noeuds[id]` |
+## Points clés
 
-## 📝 Exemple sortie
-```
-Graphe original:
-0 : [1, 2]
-1 : [3]
-2 : [3]
-3 : [4]
+- ⚠️ Nœuds indexés de 0 à v-1
+- ⚠️ Toujours appeler `liberer_graphe()`
+- ⚠️ Utiliser `uint16_t` pour les dates si >255 nœuds
+- ⚠️ Récupérer nœud via `&g->noeuds[id]`, pas via liste
 
-Composantes fortement connexes:
-Composante 1 : 0 1 2 3 4
-```
+## Erreurs courantes
+
+| Erreur | Cause | Fix |
+|--------|-------|-----|
+| SEGFAULT | Nœud inexistant | Vérifier `creer_graphe(n)` |
+| Dates bizarres | `uint8_t` overflow | Utiliser `uint16_t` |
+| Mauvaises arêtes | Accès liste chaînée | Utiliser `&g->noeuds[id]` |
 
 ---
-**Made with ❤️ in C** | *Complexité: O(V + E)* 🚀
+
+**v1.0** | Made with C | O(V+E)
