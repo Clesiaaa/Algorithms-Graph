@@ -28,6 +28,7 @@ Implémentation de **graphes orientés** avec algorithmes de parcours en profond
 | `pp(g)` | 🔍 DFS avec arborescence |
 | `liberer_graphe(g)` | 🗑️ Libère la mémoire |
 | `composantes_fort_connexe(g)` | ⚙️ Détermine les composantes fortement connexe|
+| `pl(g)` | 🔄 BFS avec suite de sommets|
 
 ## 💡 Exemple
 ```c
