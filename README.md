@@ -8,7 +8,7 @@ Bibliothèque C pour manipuler des graphes orientés avec algorithmes avancés.
 make && ./out
 ```
 
-## API
+## Fonctions
 
 | Fonction | Description |
 |----------|-------------|
@@ -51,29 +51,11 @@ typedef struct {
 } graphe;
 ```
 
-## Complexité
-
-| Algorithme | Temps |
-|-----------|-------|
-| DFS/BFS | O(V+E) |
-| Inversion | O(V+E) |
-| Kosaraju | O(V+E) |
-
 ## Points clés
 
 - ⚠️ Nœuds indexés de 0 à v-1
 - ⚠️ Toujours appeler `liberer_graphe()`
 - ⚠️ Utiliser `uint16_t` pour les dates si >255 nœuds
 - ⚠️ Récupérer nœud via `&g->noeuds[id]`, pas via liste
-
-## Erreurs courantes
-
-| Erreur | Cause | Fix |
-|--------|-------|-----|
-| SEGFAULT | Nœud inexistant | Vérifier `creer_graphe(n)` |
-| Dates bizarres | `uint8_t` overflow | Utiliser `uint16_t` |
-| Mauvaises arêtes | Accès liste chaînée | Utiliser `&g->noeuds[id]` |
-
----
 
 **v1.0** | Made with C | O(V+E)
