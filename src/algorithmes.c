@@ -199,3 +199,31 @@ void pl(graphe *g)
     
     free(queue);
 }
+
+void ordre_topologique(graphe *g) {
+    ppd(g);
+
+    noeud *ordre = (noeud *)malloc(g->v * sizeof(noeud));
+
+    for (uint16_t j = 0x00; j < g->v; j++){
+        ordre[j] = g->noeuds[j];
+    }
+
+    for (uint16_t u = 0x00; u < g->v - 1; u++){
+        for (uint16_t v = 0x00; v < g->v - 1; v++){
+
+            if (ordre[v].fin < ordre[v + 1].fin){
+
+                noeud temp = ordre[v];
+                ordre[v] = ordre[v + 1];
+                ordre[v + 1] = temp;
+            }
+        }
+    }
+
+    printf("===== Ordre Topologique =====\n");
+    for(uint16_t k = 0x00; k < g->v; k++) {
+        printf("%d ", ordre[k].val);
+    }
+    printf("\n");
+}

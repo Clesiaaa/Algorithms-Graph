@@ -21,6 +21,8 @@ int main()
     afficher_deg(&H);
     est_eulerien(&H);
 
+    ordre_topologique(&H);
+
     liberer_graphe(&H);
     liberer_graphe(&G);
 

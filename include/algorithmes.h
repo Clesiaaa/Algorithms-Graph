@@ -16,4 +16,6 @@ void composantes_fort_connexe(graphe *g);
 
 void pl(graphe *);
 
+void ordre_topologique(graphe *g);
+
 #endif
