@@ -17,8 +17,7 @@ graphe creer_graphe(uint16_t v)
         g.noeuds[i] = creer_noeud(i);
     }
     return g;
-}
-
+};
 
 void liberer_graphe(graphe *g)
 {
@@ -68,6 +67,59 @@ void ajouter_arete(graphe *g, uint16_t source, uint16_t dest)
     ajouter_noeud(g, nouveau, source);
 }
 
+void remplir_deg(graphe *g)
+{
+    //deg_out
+    for (uint16_t i = 0x00; i < g->v; i++) {
+        noeud *noeud_actuel = &g->noeuds[i];
+        
+        while (noeud_actuel->suivant != NULL) {
+            g->noeuds[i].deg_out++;
+            noeud_actuel = noeud_actuel->suivant;
+        }
+    }
+
+    //deg_in
+    for (uint16_t j = 0x00; j < g->v; j++) {
+        for (uint16_t k = 0x00; k < g->v; k++) {
+            
+            noeud *noeud_actuel = &g->noeuds[k];
+            noeud_actuel = noeud_actuel->suivant;
+            
+            while (noeud_actuel != NULL) {
+                if (noeud_actuel->val == j) {
+                    g->noeuds[j].deg_in++;
+                }
+                noeud_actuel = noeud_actuel->suivant;
+            }
+        }
+    } 
+}
+
+uint8_t est_eulerien(graphe *g) {
+
+    for (uint16_t i = 0x00; i < g->v; i++) {
+        noeud *noeud_actuel = &g->noeuds[i];
+        if (noeud_actuel->deg_in != noeud_actuel->deg_out) {
+            printf("Non Eulerien\n");
+            return 0;
+        }
+    }
+    printf("Eulerien\n");
+    return 1;
+}
+
+void afficher_deg_sommet(graphe *g, uint16_t i) {
+    printf("%d | %d | %d\n", i, g->noeuds[i].deg_out, g->noeuds[i].deg_in);
+}
+
+void afficher_deg(graphe *g) {
+    printf("Noeuds | Successeurs | Predecesseurs\n");
+    for (uint16_t i = 0x00; i < g->v; i++) {
+        afficher_deg_sommet(g, i);
+    }
+}
+
 graphe graphe_fort_con(void)
 {
     graphe g = creer_graphe(10);
@@ -97,6 +149,37 @@ graphe graphe_fort_con(void)
     ajouter_arete(&g, 8, 4);
 
     ajouter_arete(&g, 9, 7);
+
+    return g;
+}
+
+graphe graphe_eulerien(void)
+{
+    graphe g = creer_graphe(8);
+
+    ajouter_arete(&g, 0, 1);
+    ajouter_arete(&g, 0, 2);
+    ajouter_arete(&g, 0, 4);
+
+    ajouter_arete(&g, 1, 0);
+    ajouter_arete(&g, 1, 5);
+    ajouter_arete(&g, 1, 7);
+
+    ajouter_arete(&g, 2, 3);
+
+    ajouter_arete(&g, 3, 1);
+    ajouter_arete(&g, 3, 5);
+
+    ajouter_arete(&g, 4, 1);
+    ajouter_arete(&g, 4, 6);
+
+    ajouter_arete(&g, 5, 4);
+    ajouter_arete(&g, 5, 7);
+
+    ajouter_arete(&g, 6, 0);
+
+    ajouter_arete(&g, 7, 0);
+    ajouter_arete(&g, 7, 3);
 
     return g;
 }

@@ -11,6 +11,8 @@ typedef struct noeud {
     uint8_t debut;
     uint8_t fin;
     uint8_t marquer;
+    uint8_t deg_in;
+    uint8_t deg_out;
     struct noeud *suivant;
 } noeud;
 

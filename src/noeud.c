@@ -12,6 +12,8 @@ noeud creer_noeud(uint16_t val)
     n.debut = 0;
     n.fin = 0;
     n.marquer = 0;
+    n.deg_in = 0;
+    n.deg_out = 0;
     n.suivant = NULL;
     return n;
 }
