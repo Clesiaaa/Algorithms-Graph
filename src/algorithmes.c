@@ -1,4 +1,5 @@
 #include "../include/algorithmes.h"
+#include "../include/tools.h"
 #include <stdint.h>
 #include <stdio.h>
 
@@ -226,4 +227,8 @@ void ordre_topologique(graphe *g) {
         printf("%d ", ordre[k].val);
     }
     printf("\n");
+}
+
+void CE_hierholzer(graphe *g) {
+    printf("Pas implementé!\n");
 }

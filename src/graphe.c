@@ -101,11 +101,11 @@ uint8_t est_eulerien(graphe *g) {
     for (uint16_t i = 0x00; i < g->v; i++) {
         noeud *noeud_actuel = &g->noeuds[i];
         if (noeud_actuel->deg_in != noeud_actuel->deg_out) {
-            printf("Non Eulerien\n");
+            //printf("Non Eulerien\n");
             return 0;
         }
     }
-    printf("Eulerien\n");
+    //printf("Eulerien\n");
     return 1;
 }
 

@@ -6,8 +6,8 @@ OBJ_DIR = obj
 BIN_DIR = .
 
 # Cibles (fichiers objets)
-SOURCES = $(SRC_DIR)/graphe.c $(SRC_DIR)/noeud.c $(SRC_DIR)/algorithmes.c main.c
-OBJECTS = $(OBJ_DIR)/graphe.o $(OBJ_DIR)/noeud.o $(OBJ_DIR)/algorithmes.o $(OBJ_DIR)/main.o
+SOURCES = $(SRC_DIR)/graphe.c $(SRC_DIR)/noeud.c $(SRC_DIR)/algorithmes.c $(SRC_DIR)/tools.c main.c
+OBJECTS = $(OBJ_DIR)/graphe.o $(OBJ_DIR)/noeud.o $(OBJ_DIR)/algorithmes.o $(OBJ_DIR)/tools.o $(OBJ_DIR)/main.o
 EXECUTABLE = out
 
 # Règles

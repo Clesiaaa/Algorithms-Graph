@@ -20,7 +20,6 @@ void remplir_deg(graphe *g);
 void afficher_deg_sommet(graphe *g, uint16_t i);
 void afficher_deg(graphe *g);
 uint8_t est_eulerien(graphe *g);
-
 graphe graphe_eulerien(void);
 graphe graphe_fort_con(void);
 #endif
