@@ -18,6 +18,6 @@ void pl(graphe *);
 
 void ordre_topologique(graphe *g);
 
-void CE_hierholzer(graphe *g);
+void hierholzer(graphe *g);
 
 #endif

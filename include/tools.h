@@ -12,5 +12,6 @@ pile creer_pile(int taille);
 void liberer_pile(pile *p);
 int depiler(pile *p);
 void empiler(pile *p, int x);
+int pile_vide(pile *p);
 
 #endif

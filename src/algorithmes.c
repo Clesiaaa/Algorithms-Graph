@@ -1,4 +1,5 @@
 #include "../include/algorithmes.h"
+#include "../include/graphe.h"
 #include "../include/tools.h"
 #include <stdint.h>
 #include <stdio.h>
@@ -229,6 +230,69 @@ void ordre_topologique(graphe *g) {
     printf("\n");
 }
 
-void CE_hierholzer(graphe *g) {
-    printf("Pas implementé!\n");
+void hierholzer(graphe *g)
+{
+    printf("=== Circuit Eulérien ===\n");
+    
+    if (!est_eulerien(g)) {
+        printf("Le graphe n'est pas eulérien\n");
+        return; 
+    }
+
+    uint16_t somme_deg = 0;
+    for (uint16_t j = 0; j < g->v; j++) {
+        somme_deg += g->noeuds[j].deg_out;
+    }
+    printf("Nombre d'arêtes : %d\n", somme_deg);
+    
+    uint16_t *circuit = (uint16_t *)malloc((somme_deg + 1) * sizeof(uint16_t));
+    uint16_t idx_circuit = 0;
+    
+    graphe g_temp = creer_graphe(g->v);
+    for (uint16_t i = 0; i < g->v; i++) {
+        g_temp.noeuds[i].deg_out = g->noeuds[i].deg_out;
+        noeud *current = g->noeuds[i].suivant;
+        while (current != NULL) {
+            ajouter_arete(&g_temp, i, current->val);
+            current = current->suivant;
+        }
+    }
+    
+    pile p = creer_pile(somme_deg + g->v);
+    
+    uint16_t v = 0;
+    empiler(&p, v);
+    
+    while (!pile_vide(&p)) {
+
+        v = p.data[p.sommet - 1];
+        noeud *noeud_actuel = &g_temp.noeuds[v];
+        
+        if (noeud_actuel->suivant != NULL) {
+            noeud *noeud_voisin = noeud_actuel->suivant;
+            uint16_t w = noeud_voisin->val;
+            
+            noeud *temp = noeud_actuel->suivant;
+            noeud_actuel->suivant = temp->suivant;
+            free(temp);
+            noeud_actuel->deg_out--;
+            
+            empiler(&p, w);
+        } else {
+            depiler(&p);
+            circuit[idx_circuit] = v;
+            idx_circuit++;
+        }
+    }
+    
+    // Affichage
+    printf("Circuit trouvé avec %d nœuds:\n", idx_circuit);
+    for (uint16_t k = idx_circuit - 1; k > 0; k--) {
+        printf("%d -> ", circuit[k]);
+    }
+    printf("%d\n", circuit[0]);
+    
+    liberer_pile(&p);
+    free(circuit);
+    liberer_graphe(&g_temp);
 }

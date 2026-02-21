@@ -25,3 +25,8 @@ void empiler(pile *p, int x) {
     p->data[p->sommet] = x;
     p->sommet++;
 }
+
+int pile_vide(pile *p) {
+    if (p->sommet == 0) return 1;
+    return 0;
+}
