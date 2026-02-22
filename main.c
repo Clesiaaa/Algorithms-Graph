@@ -8,13 +8,9 @@
 int main()
 {
     graphe G = graphe_eulerien();
+    
     afficher_graphe(&G);
-
-    remplir_deg(&G);
-    afficher_deg(&G);
-
-    hierholzer(&G);
-
+    pl(&G);
     liberer_graphe(&G);
 
     return 0;

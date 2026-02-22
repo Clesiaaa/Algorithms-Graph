@@ -183,3 +183,14 @@ graphe graphe_eulerien(void)
 
     return g;
 }
+
+
+void marquer(noeud *n) { n->marquer = 1; }
+void demarquer(noeud *n) { n->marquer = 0; }
+
+void demarquer_tout(graphe *g) { 
+    for (uint16_t i = 0x00; i < g->v; i++) {
+        noeud *noeud_actuel = &g->noeuds[i];
+        demarquer(noeud_actuel);
+    }
+}

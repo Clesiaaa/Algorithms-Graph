@@ -157,49 +157,35 @@ void composantes_fort_connexe(graphe *g){
 
 void pl(graphe *g)
 {
-    printf("=== Parcours en Largeur (BFS) ===\n\n");
+    demarquer_tout(g);
+    file f = creer_file(g->v);
     
-    uint16_t *queue = (uint16_t *)malloc(g->v * sizeof(uint16_t));
-    uint16_t debut = 0; 
-    uint16_t fin = 0;   
+    noeud *racine = &g->noeuds[0];
+    insere_file(&f, racine->val);
+    marquer(racine);
     
-    for (uint16_t k = 0; k < g->v; k++) {
-        noeud *noeud_actuel = &g->noeuds[k];
+    printf("\n==== Parcours en Largeur ====\n");
+    
+    while (!file_vide(&f)) {
+        uint16_t s = supprime_file(&f);
+        printf("%d ", s);
         
-        if (noeud_actuel->marquer == 0) {
-            printf("Composante %d : ", k + 1);
+        noeud *noeud_voisin = g->noeuds[s].suivant;
+        
+        while (noeud_voisin != NULL) {
+            uint16_t voisin_id = noeud_voisin->val; 
             
-            queue[fin] = k;
-            fin++;
-            noeud_actuel->marquer = 1;
-            
-            while (debut < fin) {
-                uint16_t noeud_id = queue[debut];
-                debut++;
-                
-                noeud *noeud_traiter = &g->noeuds[noeud_id];
-                printf("%d ", noeud_traiter->val + 1);
-                
-                noeud *noeud_successeur = noeud_traiter->suivant;
-                while (noeud_successeur != NULL) {
-                    uint16_t succ_id = noeud_successeur->val;
-                    noeud *succ = &g->noeuds[succ_id];
-                    
-                    if (succ->marquer == 0) {
-                        succ->marquer = 1;
-                        queue[fin] = succ_id;
-                        fin++;
-                    }
-                    
-                    noeud_successeur = noeud_successeur->suivant;
-                }
+            if (g->noeuds[voisin_id].marquer == 0) {
+                insere_file(&f, voisin_id);
+                marquer(&g->noeuds[voisin_id]);
             }
             
-            printf("\n");
+            noeud_voisin = noeud_voisin->suivant;
         }
     }
     
-    free(queue);
+    liberer_file(&f);
+    printf("\n");
 }
 
 void ordre_topologique(graphe *g) {
