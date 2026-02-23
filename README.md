@@ -1,3 +1,5 @@
+<div align="center"> <image src="GraphLib.PNG" alt="Description"> </div>
+
 # LibGraphes
 
 Bibliothèque C pour manipuler des graphes orientés avec algorithmes avancés.
