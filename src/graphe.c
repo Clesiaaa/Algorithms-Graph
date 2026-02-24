@@ -194,3 +194,19 @@ void demarquer_tout(graphe *g) {
         demarquer(noeud_actuel);
     }
 }
+
+graphe copier(graphe *g)
+{
+    graphe nouveau_graphe = creer_graphe(g->v);
+    nouveau_graphe.v = g->v;
+
+    for (uint16_t i = 0x00; i < g->v; i++) {
+        noeud *noeud_actuel = &g->noeuds[i];
+        noeud_actuel = noeud_actuel->suivant;
+        while (noeud_actuel != NULL) {
+            ajouter_arete(&nouveau_graphe, i, noeud_actuel->val);
+            noeud_actuel = noeud_actuel->suivant;
+        }
+    }
+    return nouveau_graphe; 
+}

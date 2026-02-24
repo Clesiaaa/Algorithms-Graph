@@ -25,4 +25,5 @@ void demarquer_tout(graphe *g);
 uint8_t est_eulerien(graphe *g);
 graphe graphe_eulerien(void);
 graphe graphe_fort_con(void);
+graphe copier(graphe *g);
 #endif
