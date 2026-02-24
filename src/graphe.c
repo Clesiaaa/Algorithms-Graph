@@ -44,7 +44,7 @@ void ajouter_noeud(graphe *g, noeud *n, uint16_t s)
 
 void afficher_graphe(graphe *g)
 {
-    printf("Graphe ==================\n");
+    printf("===== Graphe ===== \n");
     for (uint16_t i = 0; i < g->v; i++)
     {
         printf("%d : [", i);

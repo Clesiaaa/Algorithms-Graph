@@ -39,7 +39,7 @@ void ppd(graphe *g)
         }
     }
 
-    printf("\nparcours en profondeur date\n");
+    printf("\n====== Parcours en Profondeur Date ======\n");
     printf("noeud | début | fin\n");
     for (uint16_t k = 0x00; k < g->v; k++) {
         noeud *noeud_actuel = &g->noeuds[k];
@@ -101,6 +101,7 @@ void visiter_pp(graphe *g, noeud *u)
 void pp(graphe *g)
 {    
     uint8_t composante = 1;
+    printf("==== Parcours en Profondeur ====\n");
     for (uint16_t i = 0x00; i < g->v; i++) {
         noeud *noeud_actuel = &g->noeuds[i];
         
@@ -229,7 +230,7 @@ void hierholzer(graphe *g)
     for (uint16_t j = 0; j < g->v; j++) {
         somme_deg += g->noeuds[j].deg_out;
     }
-    printf("Nombre d'arêtes : %d\n", somme_deg);
+
     
     uint16_t *circuit = (uint16_t *)malloc((somme_deg + 1) * sizeof(uint16_t));
     uint16_t idx_circuit = 0;
