@@ -272,10 +272,8 @@ void hierholzer(graphe *g)
         }
     }
     
-    // Affichage
-    printf("Circuit trouvé avec %d nœuds:\n", idx_circuit);
     for (uint16_t k = idx_circuit - 1; k > 0; k--) {
-        printf("%d -> ", circuit[k]);
+        printf("%d -> ", circuit[k] + 1);
     }
     printf("%d\n", circuit[0]);
     
