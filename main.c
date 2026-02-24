@@ -31,6 +31,9 @@ int main()
     printf("\n");
 
     //Circuit Eulérien;
+    remplir_deg(&G);
+    afficher_deg(&G);
+    printf("\n");
     hierholzer(&G);
     printf("\n");
 
