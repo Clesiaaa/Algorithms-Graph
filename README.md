@@ -1,13 +1,13 @@
 <div align="center"> <image src="GraphLib.PNG" alt="Description"> </div>
 
-# LibGraphes
+# GraphLib
 
-Bibliothèque C pour manipuler des graphes orientés avec algorithmes avancés.
+Bibliothèque C pour manipuler des graphes orientés avec algorithmes.
 
 ## Installation
 
 ```bash
-make && ./out
+make
 ```
 
 ## Fonctions
@@ -22,16 +22,21 @@ make && ./out
 | `pp(g)` | DFS avec affichage arborescence |
 | `pl(g)` | BFS (parcours largeur) |
 | `composantes_fort_connexe(g)` | Détecte composantes fortement connexes |
+| `ordre_topologique(g)` | Ordre Topologique |
+| `hierholzer(g)` | Circuit Eulerien |
 | `liberer_graphe(g)` | Libère la mémoire |
 
 ## Exemple
 
-```c
+```
 graphe G = creer_graphe(5);
 ajouter_arete(&G, 0, 1);
 ajouter_arete(&G, 1, 2);
+
 afficher_graphe(&G);
+
 composantes_fort_connexe(&G);
+
 liberer_graphe(&G);
 ```
 
@@ -55,9 +60,9 @@ typedef struct {
 
 ## Points clés
 
-- ⚠️ Nœuds indexés de 0 à v-1
+- ⚠️ Noeuds indexés de 0 à v-1
 - ⚠️ Toujours appeler `liberer_graphe()`
 - ⚠️ Utiliser `uint16_t` pour les dates si >255 nœuds
-- ⚠️ Récupérer nœud via `&g->noeuds[id]`, pas via liste
+- ⚠️ Récupérer noeud via `&g->noeuds[id]`, pas via liste
 
-**v1.0** | Made with C | O(V+E)
+Made with C

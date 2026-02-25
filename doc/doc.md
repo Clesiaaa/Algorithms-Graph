@@ -61,7 +61,7 @@ Composante 2 : 5 6
 
 ---
 
-## COMPOSANTES FORTEMENT CONNEXE - Kosaraju
+## COMPOSANTES FORTEMENT CONNEXE
 
 ```c
 composantes_fort_connexe(graphe *g)
@@ -84,22 +84,32 @@ Composante 3 : 5 6
 
 ---
 
-## Complexité
+## Hierholzer
 
-| Algo | Temps |
-|------|-------|
-| PPD | O(V+E) |
-| PP | O(V+E) |
-| Inverser | O(V+E) |
-| PL | O(V+E) |
-| Kosaraju | O(V+E) |
+```
+hierholzer(graphe *g)
+```
+
+Affiche chaque noeud avec sa date de **début** et **fin** de visite.
+
+**Sortie:**
+```
+v0 -> v1 -> v3 -> ... -> v0 
+```
 
 ---
 
-## À Retenir
+## Ordre Topologie
 
-- **PPD** = dates de visite
-- **PP** = affichage arborescence
-- **Inverser** = reverse les flèches
-- **PL** = parcours par niveaux
-- **Kosaraju** = groupes connexes
+```
+ordre_topologique(graphe *g)
+```
+
+Affiche l'ordre topologique d'un graphe.
+
+**Sortie:**
+```
+v0 v1 v3 ... vn 
+```
+
+---
