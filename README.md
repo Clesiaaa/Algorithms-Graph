@@ -15,6 +15,7 @@ make
 | Fonction | Description |
 |----------|-------------|
 | `creer_graphe(v)` | Crée un graphe avec v nœuds |
+| `creer_graphe_p(v)` | Crée un graphe pondéré avec v nœuds |
 | `ajouter_arete(g, src, dst)` | Ajoute une arête |
 | `afficher_graphe(g)` | Affiche la liste d'adjacence |
 | `inverser(g)` | Inverse toutes les arêtes |
