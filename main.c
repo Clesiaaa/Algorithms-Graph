@@ -48,14 +48,14 @@ int main()
     //liberer_graphe(&H);
     liberer_graphe(&K);
 
+    printf("\n");
+    // Graphe pondéré. 
+    graphe_p H = creer_graphe_p(3);
+    ajouter_arete_p(&H, 1, 2, 2);
+    ajouter_arete_p(&H, 1, 0, 4);
+    afficher_graphe_p(&H);
+    liberer_graphe_p(&H);
     
-    /* Graphe pondéré. 
-    graphe_p G = creer_graphe_p(3);
-    ajouter_arete_p(&G, 1, 2, 2);
-    ajouter_arete_p(&G, 1, 0, 4);
-    afficher_graphe_p(&G);
-    liberer_graphe_p(&G);
-    */
 
     return 0;
 }

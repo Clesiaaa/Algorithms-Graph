@@ -20,4 +20,5 @@ void ordre_topologique(graphe *g);
 
 void hierholzer(graphe *g);
 
+void kruskall(graphe_p *g);
 #endif

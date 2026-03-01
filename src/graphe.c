@@ -235,10 +235,12 @@ void liberer_graphe_p(graphe_p *g)
 
 void afficher_graphe_p(graphe_p *g)
 {
+    printf("==== Graphe Pondéré ==== \n");
     for (uint16_t i = 0; i < g->n; i++) {
         printf("%d : ", i);
         for (uint16_t j = 0; j < g->n; j++) {
             printf("%d ", g->matrice[i][j]);
+        }
         printf("\n");
     }
 }
