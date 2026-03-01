@@ -8,6 +8,7 @@
 
 int main()
 {   
+    
     graphe G = graphe_eulerien();
     
     afficher_graphe(&G);
@@ -46,5 +47,15 @@ int main()
     liberer_graphe(&G);
     //liberer_graphe(&H);
     liberer_graphe(&K);
+
+    
+    /* Graphe pondéré. 
+    graphe_p G = creer_graphe_p(3);
+    ajouter_arete_p(&G, 1, 2, 2);
+    ajouter_arete_p(&G, 1, 0, 4);
+    afficher_graphe_p(&G);
+    liberer_graphe_p(&G);
+    */
+
     return 0;
 }

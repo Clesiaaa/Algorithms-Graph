@@ -11,6 +11,12 @@ typedef struct graphe {
     noeud *noeuds;
 } graphe;
 
+typedef struct graphe_p {
+    uint16_t n;
+    uint16_t **matrice;
+} graphe_p;
+
+//graphe non pondéré 
 graphe creer_graphe(uint16_t v);
 void liberer_graphe(graphe *g);
 void ajouter_noeud(graphe *g, noeud *n, uint16_t s);
@@ -26,4 +32,11 @@ uint8_t est_eulerien(graphe *g);
 graphe graphe_eulerien(void);
 graphe graphe_fort_con(void);
 graphe copier(graphe *g);
+
+//graphe pondéré
+graphe_p creer_graphe_p(uint16_t n);
+void ajouter_arete_p(graphe_p *g, uint16_t source, uint16_t dest, uint16_t poid);
+void afficher_graphe_p(graphe_p *g);
+void liberer_graphe_p(graphe_p *g);
+
 #endif

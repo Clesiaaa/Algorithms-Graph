@@ -210,3 +210,35 @@ graphe copier(graphe *g)
     }
     return nouveau_graphe; 
 }
+
+graphe_p creer_graphe_p(uint16_t n)
+{
+    graphe_p g;
+    g.n = n;
+    g.matrice = (uint16_t**)calloc(n, sizeof(uint16_t*));
+    for (uint16_t i = 0; i < n; i++) {
+        g.matrice[i] = (uint16_t*)calloc(n, sizeof(uint16_t));
+    }
+    return g;
+}
+
+void ajouter_arete_p(graphe_p *g, uint16_t source, uint16_t dest, uint16_t poid)
+{
+    g->matrice[source][dest] = poid;  
+}
+
+void liberer_graphe_p(graphe_p *g)
+{
+    for (uint16_t i = 0; i < g->n; i++) free(g->matrice[i]);
+    free(g->matrice);
+}
+
+void afficher_graphe_p(graphe_p *g)
+{
+    for (uint16_t i = 0; i < g->n; i++) {
+        printf("%d : ", i);
+        for (uint16_t j = 0; j < g->n; j++) {
+            printf("%d ", g->matrice[i][j]);
+        printf("\n");
+    }
+}
