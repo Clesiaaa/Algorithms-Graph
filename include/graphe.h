@@ -35,6 +35,7 @@ graphe copier(graphe *g);
 
 //graphe pondéré
 graphe_p creer_graphe_p(uint16_t n);
+graphe_p construire_graphe_aleatoire(uint16_t n, uint16_t poid_max, float densite);
 void ajouter_arete_p(graphe_p *g, uint16_t source, uint16_t dest, uint16_t poid);
 void afficher_graphe_p(graphe_p *g);
 void liberer_graphe_p(graphe_p *g);

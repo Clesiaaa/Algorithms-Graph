@@ -244,3 +244,24 @@ void afficher_graphe_p(graphe_p *g)
         printf("\n");
     }
 }
+
+graphe_p construire_graphe_aleatoire(uint16_t n, uint16_t poid_max, float densite)
+{
+    graphe_p g = creer_graphe_p(n);
+    
+    srand(time(NULL));
+    
+    for (uint16_t i = 0; i < n; i++) {
+        for (uint16_t j = 0; j < n; j++) {
+            if (i != j) {  // pas de boucle sur soi-même
+                float r = (float)rand() / RAND_MAX;
+                if (r < densite) {
+                    uint16_t poid = (uint16_t)(rand() % poid_max + 1);
+                    ajouter_arete_p(&g, i, j, poid);
+                }
+            }
+        }
+    }
+    
+    return g;
+}
