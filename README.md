@@ -58,12 +58,4 @@ typedef struct {
     noeud *noeuds;          // Tableau nœuds
 } graphe;
 ```
-
-## Points clés
-
-- ⚠️ Noeuds indexés de 0 à v-1
-- ⚠️ Toujours appeler `liberer_graphe()`
-- ⚠️ Utiliser `uint16_t` pour les dates si >255 nœuds
-- ⚠️ Récupérer noeud via `&g->noeuds[id]`, pas via liste
-
 Made with C
